@@ -7,6 +7,7 @@
 	<title></title>
 </head>
 <body>
+	
 	<header id="header" class="">
 		<div>
 			<img src="img/logo.jpg" alt="">
@@ -73,14 +74,54 @@
 	
 
 	<aside>
-
+<div>
+	<table id="tabla">
+			<tr>
+				<th>Deporte </th>
+			</tr>
+			
+		</table>
+</div>
 	</aside>
 
 	<footer>
 		<p>2021 @ Colegio Gimnasio UFPS</p>
 	</footer>
+	
 
 	<script src="/javascripts/application.js" type="text/javascript" charset="utf-8" async defer>
+
+		function cargarTabla(){
+
+			var url = "http://demo6497253.mockable.io/categoria/deporte"
+
+			fetch(url)
+			.then(response => response.json())
+			.then(data => generarTablaDeporte(data))
+			.catch(error => {
+
+			})
+		}
+
+
+		function generarTablaDeporte(json){
+
+			const tabla = document.getElementById("tabla");
+
+			
+			
+			json.deporte.forEach(deporte => {
+
+				const tr = document.createElement("tr");
+
+				const tdTitulo = document.createElement("td");
+				tdTitulo.textContent = deporte.titulo;
+				tr.appendChild(tdTitulo); 
+
+
+				tabla.tBodies[0].appendChild(tr);
+			});
+}
 
 	</script>
 </body>
